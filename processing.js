@@ -7634,9 +7634,8 @@ module.exports = function withTouch(p, curElement, attachEventHandler, document,
     }
 
     p.mouseScroll = delta;
-
-    if (delta && typeof p.mouseScrolled === 'function') {
-      p.mouseScrolled();
+    if (delta && typeof p.mouseWheel === 'function') {
+      p.mouseWheel({getCount: () => -delta});
     }
   };
 
