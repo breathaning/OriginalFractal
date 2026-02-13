@@ -35,11 +35,15 @@ void drawSmile(float x, float y, float size, int depth) {
     return;
   }
 
+  boolean inView = Math.abs(x - width / 2) <= width / 2 + size / 2 && Math.abs(y - height / 2) <= height / 2 + size / 2;
+  boolean perceivable = size <= Math.max(width, height) * 2 || (Math.abs(x - width / 2) >= width / 2 - size / 2 && Math.abs(y - height / 2) >= height / 2 - size / 2);
+  if (inView && perceivable) {
   fill(FILL_COLOR);
   stroke(STROKE_COLOR);
   strokeWeight(Math.max(size / 40, 1));
   ellipse(x, y, size, size);
   arc(x, y, size * 2 / 3, size * 2 / 3, 0, PI);
+  }
 
   float drawSize = size * eyeSize / faceSize;
 
